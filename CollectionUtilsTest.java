@@ -17,6 +17,12 @@ class FilterInt implements ListFilter<Integer> {
 	};
 }
 
+class FilterString implements ListFilter<String> {
+	public boolean filterLess(String str){
+		return str.length() > 5;
+	};
+}
+
 class MapInt implements ListMapper<Integer> {
 	public Integer increment(Integer number){
 		return number+1;
@@ -39,7 +45,6 @@ public class CollectionUtilsTest{
 		list.add(15);
 		list.add(45);
 		ListMapper mapper = new MapInt();
-
 		List<Integer> list_1 = CollectionUtils.map(list,mapper);
 		assertEquals(6,(int)list_1.get(0));
 	}
@@ -51,7 +56,6 @@ public class CollectionUtilsTest{
 		list.add("dhram");
 		ListMapper mapper = new MapString();
 		List<String> list_1 = CollectionUtils.<String>map(list,mapper);
-		System.out.println(list_1.get(0));
 		assertEquals("param incremented",(String)list_1.get(0));
 		assertEquals("karam incremented",(String)list_1.get(1));
 	}
@@ -62,8 +66,19 @@ public class CollectionUtilsTest{
 		list.add(8);
 		list.add(45);
 		ListFilter filterObj = new FilterInt();
-
 		List<Integer> list_1 = CollectionUtils.filter(list,filterObj);
 		assertEquals(45,(int)list_1.get(0));
+	}
+
+	@Test
+	public void list_filter_remove_the_string_which_length_less_then_five(){
+		List<String> list = new ArrayList<String>();
+		list.add("param");
+		list.add("parmatma");
+		list.add("vishnu");
+		ListFilter filterObj = new FilterString();
+		List<String> list_1 = CollectionUtils.filter(list,filterObj);
+		assertEquals("parmatma",(String)list_1.get(0));
+		assertEquals("vishnu",(String)list_1.get(1));
 	}
 }
