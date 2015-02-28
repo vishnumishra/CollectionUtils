@@ -17,12 +17,22 @@ public class CollectionUtilsTest{
 
 	@Test
 	public void list_mapper_increment_the_number_by_one(){
-		List<Integer> list = new ArrayList<Integer>();
+		List<E> list = new ArrayList<E>();
 		list.add(5);
 		list.add(15);
 		list.add(45);
 		ListMapper mapper = new Mapper();
-		List<Integer> list_1 = CollectionUtils.map(list,mapper);
+		List<E> list_1 = CollectionUtils.map(list,mapper);
 		assertEquals(6,(int)list_1.get(0));
 	}
+	// @Test
+	// public void list_mapper_increment_the_number_by_one(){
+	// 	List<E> list = new ArrayList<E>();
+	// 	list.add(5);
+	// 	list.add(15);
+	// 	list.add(45);
+	// 	ListMapper mapper = new Mapper();
+	// 	List<E> list_1 = CollectionUtils.map(list,mapper);
+	// 	assertEquals(6,(int)list_1.get(0));
+	// }
 }
