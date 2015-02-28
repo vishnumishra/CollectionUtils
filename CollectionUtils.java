@@ -2,12 +2,19 @@ import java.util.*;
 
 public  class CollectionUtils{
 	
-	public static List<Integer> map(List<Integer> list, ListMapper method){
-		List<Integer> resultList = new ArrayList<Integer>();
-		for (Integer i:list ) {
-			resultList.add((int) method.incrementByOne(i));
+	public static <E> List<E> map(List<E> list, ListMapper method){
+		List<E> resultList = new ArrayList();
+		for (E i:list ) {
+			resultList.add((E)method.increment(i));
 		}
 		return resultList; 
 	}
-
+	public static <E> List<E> filter(List<E> list, ListFilter method){
+		List<E> resultList = new ArrayList();
+		for (E i:list ) {
+			if((boolean)method.filterLess(i))
+			 resultList.add(i);
+		}
+		return resultList; 
+	}
 }
